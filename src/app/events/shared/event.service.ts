@@ -6,6 +6,10 @@ export class EventService {
         return this.EVENTS;
     }
 
+    public getEvent(id: number) {
+        return this.EVENTS.find(event => event.id === id);
+    }
+
     private EVENTS = [
         {
             id: 1,
