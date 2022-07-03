@@ -4,9 +4,9 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import {map, Observable, of} from 'rxjs';
-import {EventService} from "./shared/event.service";
-import {EventModel} from "../models/eventModel";
+import { map, Observable, of } from 'rxjs';
+import { EventService } from "./shared/event.service";
+import { EventModel } from "../models/eventModel";
 
 @Injectable({
     providedIn: 'root'
