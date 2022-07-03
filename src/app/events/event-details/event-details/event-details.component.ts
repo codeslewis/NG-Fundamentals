@@ -7,7 +7,7 @@ import {EventService} from "../../shared/event.service";
 })
 export class EventDetailsComponent implements OnInit {
 
-    private event: any;
+    public event: any;
 
     constructor(private eventService: EventService) { }
 
