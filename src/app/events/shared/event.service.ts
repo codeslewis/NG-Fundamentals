@@ -1,16 +1,23 @@
 import { Injectable} from "@angular/core";
+import {Subject} from "rxjs";
+import {EventModel} from "../../models/eventModel";
 
 @Injectable()
 export class EventService {
-    public getEvents() {
-        return this.EVENTS;
+    public getEvents(): Subject<EventModel[]> {
+        let subject = new Subject<EventModel[]>();
+        setTimeout(() => {
+            subject.next(this.EVENTS);
+            subject.complete();
+        }, 100);
+        return subject;
     }
 
-    public getEvent(id: number) {
+    public getEvent(id: number): EventModel | undefined {
         return this.EVENTS.find(event => event.id === id);
     }
 
-    private EVENTS = [
+    private EVENTS: EventModel[] = [
         {
             id: 1,
             name: 'Angular Connect',
