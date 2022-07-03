@@ -29,17 +29,17 @@ import { EventListResolver } from "./events/event-list.resolver";
         BrowserModule,
         RouterModule.forRoot(appRoutes)
     ],
-  providers: [
-      EventService,
-      ToastrService,
-      EventRouteActivatorService,
-      EventListResolver,
-      {
-          provide: 'canDeactivateCreateEvent',
-          useValue: checkDirtyState
-      }
-  ],
-  bootstrap: [EventsAppComponent]
+    providers: [
+        EventService,
+        ToastrService,
+        EventRouteActivatorService,
+        EventListResolver,
+        {
+            provide: 'canDeactivateCreateEvent',
+            useValue: checkDirtyState
+        }
+    ],
+    bootstrap: [EventsAppComponent]
 })
 export class AppModule { }
 
