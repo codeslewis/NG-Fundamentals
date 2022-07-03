@@ -23,9 +23,8 @@ export class EventRouteActivatorService implements CanActivate{
             this.router
                 .navigate(['/404'])
                 .then();
-            return false;
         }
 
-        return true;
+        return eventExists;
     }
 }

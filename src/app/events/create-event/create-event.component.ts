@@ -8,6 +8,8 @@ import {Router} from "@angular/router";
 })
 export class CreateEventComponent implements OnInit {
 
+    private _isDirty: boolean = true;
+
     constructor(private router: Router) { }
 
     ngOnInit(): void {
@@ -17,4 +19,7 @@ export class CreateEventComponent implements OnInit {
         this.router.navigate(['/events']);
     }
 
+    public isDirty() {
+        return this._isDirty;
+    }
 }
