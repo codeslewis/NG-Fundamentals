@@ -6,16 +6,16 @@ import {
 } from '@angular/router';
 import { map, Observable, of } from 'rxjs';
 import { EventService } from "./shared/event.service";
-import { EventModel } from "../models/eventModel";
+import { IEvent } from "./shared/event.model";
 
 @Injectable({
     providedIn: 'root'
 })
-export class EventListResolver implements Resolve<EventModel[]> {
+export class EventListResolver implements Resolve<IEvent[]> {
 
     constructor(private eventService: EventService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<EventModel[]> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IEvent[]> {
         return this.eventService
             .getEvents()
             .pipe(map(events => events));
