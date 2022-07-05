@@ -17,6 +17,12 @@ export class EventService {
         return this.EVENTS.find(event => event.id === id);
     }
 
+    saveEvent(event: any) {
+        event.id = 999;
+        event.session = [];
+        this.EVENTS.push(event);
+    }
+
     private EVENTS: IEvent[] = [
         {
             id: 1,

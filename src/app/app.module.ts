@@ -18,6 +18,7 @@ import { RouterModule } from "@angular/router";
 import { appRoutes } from "./routes";
 import { Error404Component } from "./errors/error404.component";
 import { AuthService } from "./user/auth.service";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -31,6 +32,7 @@ import { AuthService } from "./user/auth.service";
     ],
     imports: [
         BrowserModule,
+        FormsModule,
         RouterModule.forRoot(appRoutes)
     ],
     providers: [
