@@ -3,7 +3,7 @@ import { IUser } from "./user.model";
 
 @Injectable()
 export class AuthService {
-    private currentUser: IUser;
+    public currentUser: IUser;
 
     public loginUser(userName: string, password: string) {
         this.currentUser = {
@@ -14,7 +14,16 @@ export class AuthService {
         };
     }
 
-    public isAuthenticated() {
+    public isAuthenticated(): boolean {
         return !!this.currentUser;
+    }
+
+    public getCurrentUser(): IUser {
+        return this.currentUser;
+    }
+
+    public updateCurrentUser(firstName: string, lastName: string): void {
+        this.currentUser.firstName = firstName;
+        this.currentUser.lastName = lastName;
     }
 }

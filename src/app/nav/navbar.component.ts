@@ -16,4 +16,8 @@ export class NavbarComponent {
     public displayUser(): boolean {
         return this.authService.isAuthenticated();
     }
+
+    public getDisplayName(): string {
+        return this.authService.getCurrentUser().firstName
+    }
 }
