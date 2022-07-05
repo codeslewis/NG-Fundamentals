@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, Validators, ɵFormGroupValue, ɵTypedOrUntyped } from "@angular/forms";
-import { ISession } from "../shared";
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
+import { ISession, restrictedWords } from "../shared";
 
 @Component({
     templateUrl: './create-session.component.html',
@@ -22,7 +22,11 @@ export class CreateSessionComponent implements OnInit{
         this.level = new FormControl('', Validators.required);
         this.abstract = new FormControl(
             '',
-            [Validators.required, Validators.maxLength(400)]
+            [
+                Validators.required,
+                Validators.maxLength(400),
+                restrictedWords(['foo', 'bar'])
+            ]
         );
 
         this.newSessionForm = new FormGroup({
@@ -34,7 +38,7 @@ export class CreateSessionComponent implements OnInit{
         });
     }
 
-    saveSession(values: ɵTypedOrUntyped<any, ɵFormGroupValue<any>, any>) {
+    saveSession(values: any) {
         let session: ISession = {
             id: undefined,
             name: values.name,
@@ -45,5 +49,18 @@ export class CreateSessionComponent implements OnInit{
             voters: []
         }
         console.log(session);
+    }
+
+    public hasValidationError(item: FormControl, errorType: string): boolean {
+        if (!item.dirty) {
+            return false;
+        }
+
+        let errors: ValidationErrors | null = item.errors;
+        if (errors != null) {
+            errors = <ValidationErrors> errors;
+            return errors[errorType];
+        }
+        return false;
     }
 }
