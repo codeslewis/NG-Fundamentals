@@ -7,8 +7,15 @@
             (ngSubmit)="saveProfile(profileForm.value)"
             autocomplete="off"
             novalidate>
-            <div class="form-group">
+            <div
+                [ngClass]="{
+                    'error': firstNameHasValidationError() }"
+                class="form-group">
                 <label for="firstName">First Name:</label>
+                <em *ngIf="firstNameHasRequiredError()"
+                >Required</em>
+                <em *ngIf="firstNameHasPatternError()"
+                >Must start with a letter</em>
                 <input
                     formControlName="firstName"
                     id="firstName"
@@ -17,8 +24,13 @@
                     placeholder="First Name..."
                 />
             </div>
-            <div class="form-group">
+            <div
+                [ngClass]="{ 'error': lastNameHasValidationError() }"
+                class="form-group">
                 <label for="lastName">Last Name:</label>
+                <em *ngIf="lastNameHasRequiredError()">Required</em>
+                <em *ngIf="lastNameHasPatternError()"
+                >Must start with a letter</em>
                 <input
                     formControlName="lastName"
                     id="lastName"
