@@ -17,10 +17,15 @@ export class EventService {
         return this.EVENTS.find(event => event.id === id);
     }
 
-    saveEvent(event: any) {
+    saveEvent(event: IEvent) {
         event.id = 999;
-        event.session = [];
+        event.sessions = [];
         this.EVENTS.push(event);
+    }
+
+    updateEvent(event: IEvent): void {
+        const index = this.EVENTS.findIndex(e => e.id == event.id);
+        this.EVENTS[index] = event;
     }
 
     private EVENTS: IEvent[] = [
