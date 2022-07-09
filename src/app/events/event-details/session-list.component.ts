@@ -6,22 +6,40 @@ import { ISession } from "../shared";
     templateUrl: './session-list.component.html'
 })
 export class SessionListComponent implements OnChanges {
-    @Input() public sessions: ISession[];
-    @Input() public filter: string;
+    @Input()
+    public sessions: ISession[];
+    @Input()
+    public filter: string;
+    @Input()
+    public sort: string;
     public visibleSessions: ISession[] = [];
 
-    public ngOnChanges(changes: SimpleChanges): void {
-        if (this.sessions) {
-            this.filterSessions(this.filter);
+    public ngOnChanges(_: SimpleChanges): void {
+        if (!this.sessions) {
+            return;
         }
+
+        this.filterSessions(this.filter);
+
+        this.sort == 'name' ?
+            this.visibleSessions.sort(SessionListComponent.sortByNameAsc) :
+            this.visibleSessions.sort(SessionListComponent.sortByVotesDesc);
     }
 
     private filterSessions(filter: string) {
-        if (filter == 'all') {
-            this.visibleSessions = this.sessions.slice(0);
-        } else {
-            this.visibleSessions = this.sessions
+        filter == 'all'
+            ? this.visibleSessions = this.sessions.slice(0)
+            : this.visibleSessions = this.sessions
                 .filter(s => s.level.toLocaleLowerCase() == filter);
-        }
+    }
+
+    private static sortByNameAsc(previous: ISession, next: ISession): number {
+        return previous.name == next.name
+            ? 0
+            : previous.name > next.name ? 1 : -1;
+    }
+
+    private static sortByVotesDesc(previous: ISession, next: ISession): number {
+        return next.voters.length - previous.voters.length;
     }
 }

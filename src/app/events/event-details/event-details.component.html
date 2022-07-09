@@ -29,26 +29,43 @@
             <h3>Sessions</h3>
         </div>
         <div class="col-md-6">
-            <button
-                [class.active]="filterBy == 'all'"
-                (click)="filterBy = 'all'"
-                class="btn btn-default"
-            >All</button>
-            <button
-                [class.active]="filterBy == 'beginner'"
-                (click)="filterBy = 'beginner'"
-                class="btn btn-default"
-            >Beginner</button>
-            <button
-                [class.active]="filterBy == 'intermediate'"
-                (click)="filterBy = 'intermediate'"
-                class="btn btn-default"
-            >Intermediate</button>
-            <button
-                [class.active]="filterBy == 'advanced'"
-                (click)="filterBy = 'advanced'"
-                class="btn btn-default"
-            >Advanced</button>
+
+            <div class="btn-group btn-group-sm" style="margin-left: 20px; margin-right: 20px;">
+                <button
+                    [class.active]="sortBy == 'name'"
+                    (click)="sortBy = 'name'"
+                    class="btn btn-default"
+                >By Name</button>
+                <button
+                    [class.active]="sortBy == 'votes'"
+                    (click)="sortBy = 'votes'"
+                    class="btn btn-default"
+                >By Votes</button>
+            </div>
+
+            <div class="btn-group btn-group-sm">
+                <button
+                    [class.active]="filterBy == 'all'"
+                    (click)="filterBy = 'all'"
+                    class="btn btn-default"
+                >All</button>
+                <button
+                    [class.active]="filterBy == 'beginner'"
+                    (click)="filterBy = 'beginner'"
+                    class="btn btn-default"
+                >Beginner</button>
+                <button
+                    [class.active]="filterBy == 'intermediate'"
+                    (click)="filterBy = 'intermediate'"
+                    class="btn btn-default"
+                >Intermediate</button>
+                <button
+                    [class.active]="filterBy == 'advanced'"
+                    (click)="filterBy = 'advanced'"
+                    class="btn btn-default"
+                >Advanced</button>
+            </div>
+
         </div>
         <div class="col-md-4">
             <a (click)="addSession()">Add Session</a>
@@ -59,6 +76,7 @@
         *ngIf="!addMode"
         [sessions]="event?.sessions || []"
         [filter]="filterBy"
+        [sort]="sortBy"
     ></session-list>
 
     <create-session
