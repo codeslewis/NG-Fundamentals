@@ -11,6 +11,7 @@ export class EventDetailsComponent implements OnInit {
 
     public event: IEvent | undefined;
     public addMode: boolean;
+    public filterBy: string = 'all';
 
     constructor(
         private eventService: EventService,
