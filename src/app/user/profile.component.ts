@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ValidationErrors, Validators, ɵFormGroupValue, ɵTypedOrUntyped } from "@angular/forms";
+import { Toastr, TOASTR_TOKEN } from '../common/toastr.service';
 import { AuthService } from "./auth.service";
 import { Router } from "@angular/router";
 
@@ -14,7 +15,8 @@ export class ProfileComponent implements OnInit{
 
     constructor(
         private authService: AuthService,
-        private router: Router) {}
+        private router: Router,
+        @Inject(TOASTR_TOKEN) private toastr: Toastr) {}
 
     ngOnInit(): void {
         this.firstName = new FormControl(
@@ -39,7 +41,8 @@ export class ProfileComponent implements OnInit{
     public saveProfile(values: ɵTypedOrUntyped<any, ɵFormGroupValue<any>, any>): void {
         if (this.profileForm.valid) {
             this.authService.updateCurrentUser(values.firstName, values.lastName);
-            this.router.navigate(['events']);
+            // this.router.navigate(['events']);
+            this.toastr.success("Profile Saved");
         }
     }
 
@@ -54,22 +57,22 @@ export class ProfileComponent implements OnInit{
     }
 
     public firstNameHasRequiredError(): boolean {
-        return this.hasValidationError(this.firstName, 'required');
+        return ProfileComponent.hasValidationError(this.firstName, 'required');
     }
 
     public firstNameHasPatternError(): boolean {
-        return this.hasValidationError(this.firstName, 'pattern');
+        return ProfileComponent.hasValidationError(this.firstName, 'pattern');
     }
 
     public lastNameHasRequiredError(): boolean {
-        return this.hasValidationError(this.lastName, 'required');
+        return ProfileComponent.hasValidationError(this.lastName, 'required');
     }
 
     public lastNameHasPatternError(): boolean {
-        return this.hasValidationError(this.lastName, 'pattern');
+        return ProfileComponent.hasValidationError(this.lastName, 'pattern');
     }
 
-    private hasValidationError(item: FormControl, errorType: string): boolean {
+    private static hasValidationError(item: FormControl, errorType: string): boolean {
         if (!item.touched) {
             return false;
         }
