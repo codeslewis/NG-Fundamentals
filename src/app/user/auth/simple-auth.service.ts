@@ -1,11 +1,12 @@
-import { Injectable } from "@angular/core";
-import { IUser } from "./user.model";
+import { Injectable } from '@angular/core';
+import { IUser } from '../user.model';
+import { IAuthService } from './auth.interface';
 
 @Injectable()
-export class AuthService {
+export class SimpleAuthService implements IAuthService {
     public currentUser: IUser;
 
-    public loginUser(userName: string, password: string) {
+    public loginUser(userName: string, password: string): void {
         this.currentUser = {
             id: 1,
             userName: userName,

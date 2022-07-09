@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ValidationErrors, Validators, ɵFormGroupValue, ɵTypedOrUntyped } from "@angular/forms";
 import { Toastr, TOASTR_TOKEN } from '../common/toastr.service';
-import { AuthService } from "./auth.service";
+import { AuthService } from "./auth/auth.service";
 import { Router } from "@angular/router";
 
 @Component({

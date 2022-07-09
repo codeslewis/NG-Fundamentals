@@ -21,8 +21,9 @@ import { CollapsibleWellComponent } from "./common/collapsible-well/collapsible-
 import { RouterModule } from "@angular/router";
 import { appRoutes } from "./routes";
 import { Error404Component } from "./errors/error404.component";
-import { AuthService } from "./user/auth.service";
+import { AuthService } from "./user/auth/auth.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { SimpleAuthService } from './user/auth/simple-auth.service';
 
 declare let toastr: Toastr;
 
@@ -55,7 +56,7 @@ declare let toastr: Toastr;
             provide: 'canDeactivateCreateEvent',
             useValue: checkDirtyState
         },
-        AuthService
+        { provide: AuthService, useClass: SimpleAuthService }
     ],
     bootstrap: [EventsAppComponent]
 })
