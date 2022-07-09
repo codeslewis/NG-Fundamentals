@@ -2,6 +2,11 @@ import { Injectable } from "@angular/core";
 import { IUser } from "../user.model";
 import { IAuthService } from './auth.interface';
 
+/**
+ * Represents the auth implementation that is registered with the app.
+ * The simple implementation is provided. This demonstrates using different
+ * implementations using the useClass provider in Angular DI.
+ */
 @Injectable()
 export class AuthService implements IAuthService {
     public currentUser: IUser;

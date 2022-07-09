@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { IUser } from '../user.model';
 import { IAuthService } from './auth.interface';
 
+/**
+ * A simple Auth implementation that provides a hard-coded user.
+ * Used for development purposes.
+ */
 @Injectable()
 export class SimpleAuthService implements IAuthService {
     public currentUser: IUser;
