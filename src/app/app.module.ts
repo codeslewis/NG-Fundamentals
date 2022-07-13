@@ -16,8 +16,8 @@ import {
 
 import { EventsAppComponent } from './events-app.component';
 import { NavbarComponent } from "./nav/navbar.component";
-import { Toastr, TOASTR_TOKEN } from "./common/toastr.service";
-import { CollapsibleWellComponent } from "./common/collapsible-well/collapsible-well.component";
+import { Toastr, TOASTR_TOKEN } from "./common";
+import { CollapsibleWellComponent } from "./common";
 import { RouterModule } from "@angular/router";
 import { appRoutes } from "./routes";
 import { Error404Component } from "./errors/error404.component";
